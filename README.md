@@ -1,0 +1,1 @@
+This repository demonstrates integration of Google Cloud Build with Github repository
