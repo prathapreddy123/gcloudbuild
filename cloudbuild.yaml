@@ -24,7 +24,8 @@ steps:
   - '-c'
   - |
     gsutil mb gs://${_BUCKET}  > /dev/null 2>&1
-    if [[ $? -eq 0 ]]; then
+    cachesize=$(gsutil du -s gs://${_BUCKET}/cache/.m2 | awk '{ print $1 }') #Check the size of the cache
+    if [[ $cachesize -eq 0 ]]; then
       echo "Copying empty file to create maven cache path"
       touch emptyfile.txt
       gsutil cp emptyfile.txt gs://${_BUCKET}/cache/.m2/
@@ -67,7 +68,7 @@ steps:
   - 'rsync'
   - '-r'
   - '/cache/.m2'
-  - 'gs://${_BUCKET}/cache/.m2/'
+  - 'gs://${_BUCKET}/cache/.m2'
   volumes:
   - path: '/cache/.m2'
     name: 'maven_cache'
