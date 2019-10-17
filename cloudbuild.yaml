@@ -85,14 +85,14 @@ steps:
   - |
     if [ "${_MAIN_REPO}" == "True" -a "$BRANCH_NAME" == "master" ]; then
       echo "Copying jar files to artifactory"
-      gsutil -m cp target/*.jar gs://${_BUCKET}/artifacts/$REPO_NAME/
+      gsutil -m cp target/*.jar gs://${_BUCKET}/artifacts/${REPO_NAME}/
     fi
 
 
 substitutions:
   # Default values
   _BUCKET: 'cloud-pso-artifactory'
-  #_MAIN_REPO: 'False'
+  _MAIN_REPO: 'False'
 
 options:
   # Use higher CPU machines so the caching and build steps are faster.
