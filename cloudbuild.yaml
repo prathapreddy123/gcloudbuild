@@ -85,7 +85,7 @@ steps:
   - |
     if [ "${_MAIN_REPO}" == "True" -a "$BRANCH_NAME" == "master" ]; then
       echo "Copying jar files to artifactory"
-      gsutil -m cp target/*.jar gs://${_BUCKET}/artifacts/$BRANCH_NAME/$REVISION_ID/
+      gsutil -m cp target/*.jar gs://${_BUCKET}/artifacts/${REPO_NAME}/
     fi
 
 
